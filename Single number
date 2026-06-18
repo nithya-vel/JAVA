@@ -1,0 +1,18 @@
+class Solution {
+    public int singleNumber(int[] nums) {
+        HashMap<Integer, Integer> occurrences = new HashMap<>();
+        int z = 0;
+
+        for (int num : nums) {
+            occurrences.put(num, occurrences.getOrDefault(num, 0) + 1);
+        }
+
+        for (Map.Entry<Integer, Integer> entry : occurrences.entrySet()) {
+            if(entry.getValue() == 1){
+            z = entry.getKey();
+            break;
+        }
+        }
+        return z;
+    }
+}
