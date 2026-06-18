@@ -1,0 +1,30 @@
+class Solution {
+    public String reverseOnlyLetters(String s) {
+        int i = 0;
+        int j = s.length() - 1;
+        char[] chars = s.toCharArray();
+        
+        while (i < j) {
+            // Move pointer i forward until it hits a letter, but don't cross j
+            while (i < j && !Character.isLetter(chars[i])) {
+                i++;
+            }
+            // Move pointer j backward until it hits a letter, but don't cross i
+            while (i < j && !Character.isLetter(chars[j])) {
+                j--;
+            }
+            
+            // Swap only if pointers haven't crossed
+            if (i < j) {
+                char temp = chars[i];
+                chars[i] = chars[j];
+                chars[j] = temp;
+                
+                // Move pointers inward after a successful swap
+                i++;
+                j--;
+            }
+        }
+        return new String(chars);
+    }
+}
