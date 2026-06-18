@@ -1,0 +1,37 @@
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode() {}
+ *     ListNode(int val) { this.val = val; }
+ *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+ * }
+ */
+class Solution {
+    public ListNode reverseList(ListNode head) {
+        Stack<Integer> s = new Stack<>();
+        ListNode temp = head;
+        if(head == null){
+            return null;
+        }
+        while(temp != null){
+            s.push(temp.val);
+            temp = temp.next;
+        }
+        ListNode tail = null;
+        ListNode rev = null;
+        while(!s.isEmpty()){
+            temp = new ListNode(s.pop());
+            if(rev == null){
+                rev = temp;
+                tail = temp;
+            }
+            else{
+                tail.next = temp;
+                tail = temp;
+            }
+        }
+        return rev;
+    }
+}
